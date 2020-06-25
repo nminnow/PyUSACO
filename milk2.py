@@ -12,45 +12,23 @@ with open('milk2.in') as fin:
     if not times:
         times.append([0, 0])
 
-if times:
-    conts = [0]
-    idles = [0]
-    cont = False
-    idle = False
-    duration = 0
-    for t in range(min(time[0] for time in times), max(time[1] for time in times)):
-        m = 0
-        for start, end in times:
-            if t in range(start, end):
-                m = 1
-                break
-        if cont:
-            if m:
-                duration += 1
-            else:
-                conts.append(duration)
-                cont = False
-                idle = True
-                duration = 1
-        elif idle:
-            if m:
-                idles.append(duration)
-                idle = False
-                cont = True
-                duration = 1
-            else:
-                duration += 1
-        else:
-            if m:
-                cont = True
-                duration = 1
-            else:
-                idle = True
-                duration = 1
-    if cont:
-        conts.append(duration)
-    elif idle:
-        idles.append(duration)
+times.sort()
+ptimes = [times[0]]
+for start, end in times:
+    pstart, pend = ptimes[-1]
+    if pend < start:
+        ptimes.append([start, end])
+    else:
+        if pend < end:
+            ptimes[-1][1] = end
+
+maxidle = 0
+pend = ptimes[0][1]
+for start, end in ptimes[1:]:
+    idle = start - pend
+    if maxidle < idle:
+        maxidle = idle
+    pend = end
 
 with open('milk2.out', 'w') as fout:
-    fout.write(str(max(conts)) + ' ' + str(max(idles)) + '\n')
+    fout.write(str(max(e - s for s, e in ptimes)) + ' ' + str(maxidle) + '\n')
