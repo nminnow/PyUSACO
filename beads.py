@@ -4,37 +4,45 @@ LANG: PYTHON3
 PROB: beads
 '''
 
-def count():
-    lens = []
-    pb = 0
-    pbead = ''
-    for b, bead in enumerate(beads * 2):
-        if bead != 'w':
-            if not pbead:
-                pbead = bead
-            if bead != pbead:
-                pbead = bead
-                lens.append(b - pb)
-                pb = b
-    if not lens:
-        lens.append(l)
-
-    maxlen = 0
-    plen = 0
-    for len in lens:
-        length = len + plen
-        if maxlen < length <= l:
-            maxlen = length
-        plen = len
-    return maxlen
-
 with open('beads.in') as fin:
-    l = int(next(fin).rstrip())
+    t = int(next(fin).rstrip())
     beads = list(next(fin).rstrip())
 
+maxlen = 0
+for b, bead in enumerate(beads):
+    switch = 2
+    len = 0
+    x = b + 1
+    if bead == 'w':
+        while x % t != b % t:
+            xbead = beads[x % t]
+            if xbead != 'w':
+                pbead = xbead
+                while switch and x % t != b % t:
+                    xbead = beads[x % t]
+                    if xbead != 'w' and xbead != pbead:
+                        switch -= 1
+                        pbead = xbead
+                    len += 1
+                    x += 1
+                break
+            len += 1
+            x += 1
+        else:
+            len = t
+    else:
+        pbead = bead
+        while switch and x % t != b % t:
+            xbead = beads[x % t]
+            if xbead != 'w' and xbead != pbead:
+                switch -= 1
+                pbead = xbead
+            len += 1
+            x += 1
+        if switch:
+            len += 1
+    if maxlen < len:
+        maxlen = len
+
 with open('beads.out', 'w') as fout:
-    maxlen1 = count()
-    beads.reverse()
-    maxlen2 = count()
-    print(maxlen1, maxlen2)
-    fout.write(str(max([maxlen1, maxlen2])) + '\n')
+    fout.write(str(maxlen) + '\n')
