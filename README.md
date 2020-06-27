@@ -20,3 +20,12 @@ Solutions to problems from [USACO training pages](train.usaco.org).
 1. [Name That Number](namenum.py)
 1. [Palindromic Squares](palsquare.py)
 1. [Dual Palindromes](dualpal.py)
+
+#### Section 1.4
+
+1. [Mixing Milk](milk.py)
+1. [Barn Repair](barn1.py)
+1. Prime Cryptarithm
+1. Combination Lock
+1. Wormholes
+1. Ski Course Design
