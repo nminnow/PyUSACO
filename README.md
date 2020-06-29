@@ -1,6 +1,6 @@
 # USACO
 
-My solutions to [USACO training pages’](train.usaco.org) problems.
+My solutions to [USACO training pages’](https://train.usaco.org/) problems.
 
 ## Table of Contents
 
