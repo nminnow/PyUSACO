@@ -1,6 +1,6 @@
 # USACO
 
-Solutions to problems from [USACO training pages](train.usaco.org).
+My solutions to [USACO training pages’](train.usaco.org) problems.
 
 ## Table of Contents
 
@@ -25,7 +25,7 @@ Solutions to problems from [USACO training pages](train.usaco.org).
 
 1. [Mixing Milk](milk.py)
 1. [Barn Repair](barn1.py)
-1. Prime Cryptarithm
-1. Combination Lock
-1. Wormholes
+1. [Prime Cryptarithm](crypt1.py)
+1. [Combination Lock](combo.py)
+1. [Wormholes](wormhole.py)
 1. Ski Course Design
